@@ -1,16 +1,18 @@
 #!/usr/bin/env Rscript
 
+# базовая случайная величина
+# basic random value
+
 # мультипликативный конгруэнтный метод
+
+source("is_whole.r")
 
 residue <- function(num, mod) {
     num - mod * floor(num / mod)
 }
 
-is.wholenumber <- function(x, tol = .Machine$double.eps^0.5) {
-    abs(x - round(x)) < tol
-}
-
-generate_BSV <- function(alpha = 65539, beta = 65539, M = 2**31, n = 100) {
+generate_brv <- function(alpha = 65539, beta = 65539, M = 2**31,
+                         n = 100, a = 0, b = 1) {
     if (!is.wholenumber(alpha) || alpha < 1) {
         stop("alpha not natural")
     }
@@ -33,8 +35,7 @@ generate_BSV <- function(alpha = 65539, beta = 65539, M = 2**31, n = 100) {
         res <- c(res, alpha / M)
     }
 
+    res <- a + (b-a)*res
+
     return(res)
 }
-
-bsv <- generate_BSV()
-print(bsv)
