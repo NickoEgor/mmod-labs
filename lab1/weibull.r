@@ -2,16 +2,26 @@
 
 # распределение вейбулла
 
-prob_weibull <- function(x, l, k) {
-    if (k < 0) stop("error: k < 0")
-    if (l < 0) stop("error: l < 0")
+weibull.density <- function(x, l, k) {
     ifelse(x >= 0, k/l * (x/l)^(k-1) * exp(-(x/l)**k), 0)
 }
 
-distr_weibull <- function(x, l, k) {
+weibull.distr <- function(x, l, k) {
     1 - exp(-((x/l)^k))
 }
 
-inv_weibull <- function(p, l, k) {
+weibull.inv <- function(p, l, k) {
     l * (-log(1-p)) ^ (1/k)
+}
+
+weibull.mean <- function(l, k) {
+    l*gamma(1 + 1/k)
+}
+
+weibull.var <- function(l, k) {
+    l^2*gamma(1 + 2/k) - weibull.mean(l, k)^2
+}
+
+weibull.distr_func <- function(l, k) {
+    function(x) 1 - exp(-((x/l)^k))
 }
