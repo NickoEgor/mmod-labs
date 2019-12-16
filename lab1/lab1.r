@@ -8,8 +8,6 @@ source("weibull.r")
 source("utils.r")
 source("drv.r")
 
-PREC <- 7
-
 amount <- 10000
 l <- 3
 k <- 2
@@ -83,8 +81,8 @@ pearson <- describe_distr("BASIC RANDOM VARIABLE",
 if (!pearson) {
     stop("Pearson failed. Please restart")
 }
-cat("Check independance\n")
-check_brv_correlation()
+# cat("Check independance\n")
+# check_brv_correlation()
 cat("//------------------------------------------\n")
 invisible(describe_distr("WEIBULL DISTRIBUTION",
                          weibull.distr_func(l, k), distr,

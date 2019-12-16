@@ -1,9 +1,6 @@
 #!/usr/bin/env Rscript
 
-# базовая случайная величина
 # basic random variable
-
-# мультипликативный конгруэнтный метод
 
 source("is_whole.r")
 
